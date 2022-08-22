@@ -8,6 +8,12 @@ namespace CommandsAPI.Data
 {
     public class CommandAPIRepo : ICommandsRepo
     {
+        private readonly CommndContext _context;
+
+        public CommandAPIRepo(CommndContext context)
+        {
+            _context = context;
+        }
         public void DeleteCommand(Commands cmd)
         {
             throw new NotImplementedException();
@@ -15,12 +21,14 @@ namespace CommandsAPI.Data
 
         public IEnumerable<Commands> GetAllData()
         {
-            throw new NotImplementedException();
+           return  _context.Commands.ToList();
+
         }
 
         public Commands GetCommandById(int id)
         {
-            throw new NotImplementedException();
+            var data = _context.Commands.FirstOrDefault(check => check.Id == id);
+            return data;
         }
 
         public void InsertCommand(Commands cmd)
