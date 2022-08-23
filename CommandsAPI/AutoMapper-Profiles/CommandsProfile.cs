@@ -14,6 +14,9 @@ namespace CommandsAPI.AutoMapper_Profiles
         public CommandsProfile()
         {
             CreateMap<Commands, CommandReadDtos>();
+            CreateMap<Commands, CommandCreateDtos>().ReverseMap();
+            CreateMap<CommandUpdateDtos, Commands>().ReverseMap();
+               
         }
     }
 }
