@@ -16,7 +16,13 @@ namespace CommandsAPI.Data
         }
         public void DeleteCommand(Commands cmd)
         {
-            throw new NotImplementedException();
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Remove(cmd);
+            SaveChanges();
+
         }
 
         public IEnumerable<Commands> GetAllData()
@@ -33,17 +39,24 @@ namespace CommandsAPI.Data
 
         public void InsertCommand(Commands cmd)
         {
-            throw new NotImplementedException();
+            if(cmd == null)
+            {
+                throw new ArgumentNullException(nameof(cmd));
+            }
+            _context.Commands.Add(cmd);
+
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return (_context.SaveChanges() >= 0);
         }
 
         public void UpdateCommand(Commands cmd)
         {
-            throw new NotImplementedException();
+            // we are doing this update without code 
         }
+
+       
     }
 }
