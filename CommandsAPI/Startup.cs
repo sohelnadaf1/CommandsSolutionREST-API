@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CommandsAPI.Data;
 using AutoMapper;
+using Newtonsoft.Json.Serialization;
 
 namespace CommandsAPI
 {
@@ -33,7 +34,15 @@ namespace CommandsAPI
         {
             // this is automapper service configured
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // adding netwonsoft json serilization
+            services.AddControllers().AddNewtonsoftJson(s =>
+            {
+                s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+            
             services.AddControllers();
+
             // adding DbContext service
             services.AddDbContext<CommndContext>(options => options.UseSqlServer(ConnectionString));
 
